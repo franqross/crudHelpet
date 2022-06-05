@@ -49,7 +49,7 @@ router.delete('/:id',(req,res)=>{
  router.put('/:id',(req,res)=>{
     const{id}=req.params
     const{nombre,email}=req.body
-
+    
     let sql = `UPDATE user SET nombre ='${nombre}',email='${email}' WHERE id_usuario ='${id}'`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
