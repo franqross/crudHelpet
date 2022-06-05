@@ -1,0 +1,63 @@
+const router = require('express').Router();
+const conexion = require('./config/server');
+
+//get usuarios
+
+//tomar todos los usuarios
+router.get('/',(req,res)=>{
+    
+    let sql = 'select * from user'
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows)
+        }
+    })
+})
+
+//por id
+
+router.get('/:id',(req,res)=>{
+    const{id}=req.params
+    let sql = 'select * from user where id_usuario= ?'
+    conexion.query(sql,[id],(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows)
+        }
+    })
+})
+
+//eliminar
+
+router.delete('/:id',(req,res)=>{
+    const{id}= req.params
+
+    let sql =`delete from user where id_usuario='${id}'`
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json({status:'usuario eliminado'})
+        }
+    })
+
+})
+
+
+//modificar
+
+ router.put('/:id',(req,res)=>{
+    const{id}=req.params
+    const{nombre,email}=req.body
+
+    let sql = `UPDATE user SET nombre ='${nombre}',email='${email}' WHERE id_usuario ='${id}'`
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json({status:'usuario actualizado'})
+        }
+    })
+})
+ 
+
+module.exports = router;
