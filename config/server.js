@@ -1,18 +1,7 @@
 const mysql = require("mysql");
 const fs = require("fs");
 
-const db = mysql.createConnection({
-    host: "database-2.cqixht8znhwm.us-east-1.rds.amazonaws.com",
-    port: "3306",
-    user: "admin",
-    password: "helpet-Adm127",
-    database: "helpet",
-    ssl:{
-        // cert:'../cert/us-east-1-bundle.pem',
-        ca: fs.readFileSync(__dirname + '../cert/us-east-1-bundle.pem')
-    }
-
-});
+const db = mysql.createConnection('mysql2://admin:helpet-Adm127@database-2.cqixht8znhwm.us-east-1.rds.amazonaws.com:3306/helpet?sslca=cert/us-east-1-bundle.pem');
 db.connect(err => {
     if (err) {
         console.log(err.message);
