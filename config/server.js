@@ -19,7 +19,7 @@ db.connect(err => {
         console.log(err.message);
         return;
     }
-    db.query("SELECT * FROM usuarios", function (err, result, fields) {
+    db.query("SELECT * FROM usuario", function (err, result, fields) {
         if (err) throw err;
         /*  console.log(result); */
     });
