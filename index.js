@@ -2,7 +2,7 @@ require('./config/server');
 
 const express = require('express');
 
-const port = (process.env.port || 3006);
+const port = (process.env.PORT || 3006);
 
 
 const app = express();
