@@ -32,12 +32,25 @@ router.get('/:id',(req,res)=>{
 
 router.delete('/:id',(req,res)=>{
     const{id}= req.params
-
+    let sqlfk =`SET FOREIGN_KEY_CHECKS=0;`
+    conexion.query(sqlfk,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            
+        }
+    })
     let sql =`delete from usuario where id_usuario='${id}'`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
-            res.json({status:'usuario eliminado'})
+            let sqlfk =`SET FOREIGN_KEY_CHECKS=1;`
+            conexion.query(sqlfk,(err,rows,fields)=>{
+                if(err) throw err;
+                else{
+                    res.json({status:'usuario eliminado'})
+                }
+            })           
+            
         }
     })
 
