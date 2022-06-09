@@ -19,10 +19,11 @@ db.connect(err => {
         console.log(err.message);
         return;
     }
-    db.query("SELECT * FROM usuario", function (err, result, fields) {
+    /* db.query("SELECT * FROM usuario", function (err, result, fields) {
         if (err) throw err;
-        /*  console.log(result); */
-    });
+        
+    }) */
+    ;
     /* console.log("Database connected.") */
     //probar
 });
