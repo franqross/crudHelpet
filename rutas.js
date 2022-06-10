@@ -3,7 +3,7 @@ const conexion = require('./config/server');
 
 //get usuarios
 
-//tomar todos los usuarios
+//get all
 router.get('/',(req,res)=>{
     
     let sql = 'select * from usuario'
