@@ -6,7 +6,7 @@ const db = mysql.createConnection({
     port: "3306",
     user: "admin",
     password: "helpet-Adm127",
-    database: "helpet",
+    database: "helpetdb",
     ssl:{
         // cert:'../cert/us-east-1-bundle.pem',
         // ca: fs.readFileSync(__dirname + '../cert/us-east-1-bundle.pem')
