@@ -62,12 +62,25 @@ router.delete('/:id',(req,res)=>{
  router.put('/:id',(req,res)=>{
     const{id}=req.params
     const{nombre,email}=req.body
-    
+    let sqlfk =`SET FOREIGN_KEY_CHECKS=0;`
+    conexion.query(sqlfk,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            
+        }
+    })
     let sql = `UPDATE usuario SET nombre ='${nombre}',email='${email}' WHERE id_usuario ='${id}'`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
-            res.json({status:'usuario actualizado'})
+            let sqlfk =`SET FOREIGN_KEY_CHECKS=1;`
+            conexion.query(sqlfk,(err,rows,fields)=>{
+                if(err) throw err;
+                else{
+                    res.json({status:'usuario actualizado'})
+                }
+            })
+            
         }
     })
 })
