@@ -25,7 +25,7 @@ db.connect(err => {
     }) */
     ;
     /* console.log("Database connected.") */
-    //probar
+    //probandos
 });
 
 module.exports = db;
