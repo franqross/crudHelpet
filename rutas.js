@@ -30,7 +30,7 @@ router.get('/usuario/:id', (req, res) => {
 
 //eliminar
 
-router.delete('usuario/:id', (req, res) => {
+router.delete('/usuario/:id', (req, res) => {
     const { id } = req.params
     let sqlfk = `SET FOREIGN_KEY_CHECKS=0;`
     conexion.query(sqlfk, (err, rows, fields) => {
