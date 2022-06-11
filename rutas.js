@@ -59,7 +59,7 @@ router.delete('usuario/:id', (req, res) => {
 
 //modificar
 
-router.put('/usuario:id', (req, res) => {
+router.put('/usuario/:id', (req, res) => {
     const { id } = req.params
     const { nombre, email } = req.body
     let sqlfk = `SET FOREIGN_KEY_CHECKS=0;`
