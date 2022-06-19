@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const conexion = require('./config/server');
-
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
 //get usuarios
 
 //get all
@@ -10,6 +11,7 @@ router.get('/usuarios', (req, res) => {
     conexion.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
+            console.log(fs);
             res.json(rows)
         }
     })
@@ -120,6 +122,20 @@ router.get('/usuariosadmins',(req,res)=>{
         }
     })
 })
+
+router.get('/usuariosadmins',(req,res)=>{
+    
+    let sql = 'select * from usuario where id_rol=2'
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows)
+            console.log("res: ", res);
+        }
+    })
+})
+
+
 
 
 
