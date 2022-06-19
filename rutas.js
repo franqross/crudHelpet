@@ -139,7 +139,7 @@ router.get('/metricas',(req,res)=>{
     const { creacionMes,creacionAnio,hastaMes,hastaAnio } = req.body;
     console.log(typeof creacionMes,creacionAnio,typeof hastaMes,hastaAnio);
     let sql = `SELECT * FROM usuario 
-    WHERE fec_creacion BETWEEN '${creacionAnio}-${creacionMes}-25 00:00:00' AND '${hastaAnio}-${hastaMes}-25 23:59:59'`
+    WHERE fec_creacion BETWEEN ''${creacionAnio}'-'${creacionMes}'-1 00:00:00' AND ''${hastaAnio}'-'${hastaMes}'-1 23:59:59'`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
@@ -147,7 +147,6 @@ router.get('/metricas',(req,res)=>{
             console.log("res: ", res);
         }
     })
-    res.send('metricas');
 })
 
 
