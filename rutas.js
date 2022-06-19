@@ -136,11 +136,17 @@ router.get('/usuariosadmins',(req,res)=>{
 })
 
 router.get('/metricas',(req,res)=>{
-    let pdfDoc = new PDFDocument;
-    pdfDoc.pipe(fs.createWriteStream('/metricashelpet.pdf'));
-    pdfDoc.text("Metricas Usuarios");
-    pdfDoc.end();
-    res.json({path: '/var/task/assets/metricashelpet.pdf'});
+    const { creacionMes,creacionAnio,hastaMes,hastaAnio } = req.body;
+    let sql = `SELECT * FROM usuario 
+    WHERE fec_creacion BETWEEN ''${creacionAnio}'-'${creacionMes}'-25 00:00:00' AND ''${hastaAnio}'-'${hastaMes}'-25 23:59:59'`
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows)
+            console.log("res: ", res);
+        }
+    })
+    res.send('metricas');
 })
 
 
