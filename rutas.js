@@ -140,9 +140,7 @@ router.get('/metricas',(req,res)=>{
     pdfDoc.pipe(fs.createWriteStream('/metricashelpet.pdf'));
     pdfDoc.text("Metricas Usuarios");
     pdfDoc.end();
-    console.log(pdfDoc)
-    path.dirname(pdfDoc);
-    res.download('metricashelpet.pdf');
+    res.json({path: '/metricashelpet.pdf'});
 })
 
 
