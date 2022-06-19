@@ -137,6 +137,7 @@ router.get('/usuariosadmins',(req,res)=>{
 
 router.get('/metricas',(req,res)=>{
     const { creacionMes,creacionAnio,hastaMes,hastaAnio } = req.body;
+    console.log(typeof creacionMes,creacionAnio,typeof hastaMes,hastaAnio);
     let sql = `SELECT * FROM usuario 
     WHERE fec_creacion BETWEEN ''${creacionAnio}'-'${creacionMes}'-25 00:00:00' AND ''${hastaAnio}'-'${hastaMes}'-25 23:59:59'`
     conexion.query(sql,(err,rows,fields)=>{
