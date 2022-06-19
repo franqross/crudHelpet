@@ -11,7 +11,7 @@ router.get('/usuarios', (req, res) => {
     conexion.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
-            console.log(fs);
+            
             res.json(rows)
         }
     })
@@ -140,7 +140,7 @@ router.get('/metricas',(req,res)=>{
     pdfDoc.pipe(fs.createWriteStream('metricashelpet.pdf'));
     pdfDoc.text("Metricas Usuarios");
     pdfDoc.end();
-    res.send('metricas');
+    res.download('metricashelpet.pdf');
 })
 
 
