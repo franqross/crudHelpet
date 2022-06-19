@@ -135,7 +135,7 @@ router.get('/usuariosadmins',(req,res)=>{
     })
 })
 
-router.get('/metricas',(req,res)=>{
+router.get('/metricas-fecha-creacion',(req,res)=>{
     const { creacionMes,creacionAnio,hastaMes,hastaAnio } = req.body;
     console.log(typeof creacionMes,creacionAnio,typeof hastaMes,hastaAnio);
     let sql = `SELECT * FROM usuario 
@@ -143,13 +143,24 @@ router.get('/metricas',(req,res)=>{
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
-            res.json(rows)
-            console.log("res: ", res);
+            res.json(rows);
+            
         }
     })
 })
 
+router.get('/metricas-usuarios-subs',(req,res)=>{
+    const { creacionMes,creacionAnio,hastaMes,hastaAnio } = req.body;
 
+    let sql = `SELECT usuario.*,subscripcion.id_subscripcion FROM usuario inner join subscripcion on usuario.id_subscripcion IS NOT NULL`
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows);
+            
+        }
+    })
+})
 
 
 
