@@ -140,7 +140,7 @@ router.get('/metricas',(req,res)=>{
     pdfDoc.pipe(fs.createWriteStream('/metricashelpet.pdf'));
     pdfDoc.text("Metricas Usuarios");
     pdfDoc.end();
-    res.json({path: '/metricashelpet.pdf'});
+    res.json({path: '/var/task/assets/metricashelpet.pdf'});
 })
 
 
