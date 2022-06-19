@@ -152,7 +152,7 @@ router.get('/metricas-fecha-creacion',(req,res)=>{
 router.get('/metricas-usuarios-subs',(req,res)=>{
     const { creacionMes,creacionAnio,hastaMes,hastaAnio } = req.body;
 
-    let sql = `SELECT usuario.*,subscripcion.id_subscripcion FROM usuario inner join subscripcion on usuario.id_subscripcion IS NOT NULL`
+    let sql = `SELECT usuario.*,subscripcion.id_subscripcion FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
