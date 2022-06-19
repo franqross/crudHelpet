@@ -135,6 +135,12 @@ router.get('/usuariosadmins',(req,res)=>{
     })
 })
 
+router.get('/metricas',(req,res)=>{
+    
+    res.statusCode('200');
+})
+
+
 
 
 
