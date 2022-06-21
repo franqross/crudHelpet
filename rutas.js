@@ -162,6 +162,21 @@ router.get('/metricas-usuarios-subs',(req,res)=>{
     })
 })
 
+router.get('/publicaciones_usuario',(req,res)=>{
+    const { idUsuario } = req.body;
+    var todayDate = new Date();
+    let todayString = todayDate.toISOString();
+    let fechaHoyBDD =todayString.slice(0, 10);
+    let sql = `SELECT COUNT(id_publicacion) FROM publicacion inner join usuario on usuario.id_usuario='${idUsuario}' WHERE usuario.id_usuario=publicacion.id_usuario AND DATE(fecha_creacion) = DATE('${fechaHoyBDD}')`
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows);
+            
+        }
+    })
+})
+
 
 
 
