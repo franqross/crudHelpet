@@ -178,6 +178,23 @@ router.get('/publicaciones_usuario',(req,res)=>{
 })
 
 
+router.get('/metricas-transacciones-fecha',(req,res)=>{
+    const { creacionMes,creacionAnio,creacionDia,hastaMes,hastaAnio,hastaDia } = req.body;
+     //preguntar a raul si me puede mandar la fecha entera.... (6 variables...)
+    let sql = `SELECT *
+    FROM registro_transaccion
+    WHERE f_desde >= CAST('${creacionAnio}-${creacionMes}-${creacionDia}' AS DATE)
+    AND f_hasta <= CAST('${hastaAnio}-${hastaMes}-${hastaDia}' AS DATE);`
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows);
+            console.log('paso query transacciones fecha');
+        }
+    })
+})
+
+
 
 
 module.exports = router;
