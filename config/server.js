@@ -5,19 +5,15 @@ const fs = require("fs");
 const db = mysql.createConnection({
     host: process.env.HOST,
     port: process.env.DB_PORT,
-    user: process.env.USER,
+    user: process.env.USER_DB,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
+    insecureAuth : true,
     ssl:{
         rejectUnauthorized: false
     }
-    // ssl: "Amazon RDS"
-    // ssl: {
-    //     ca: fs.readFileSync(__dirname + '/cert/global-bundle-2.pem')
-    // }
-
-
 });
+
 db.connect(err => {
     if (err) {
         console.log(err.message);
