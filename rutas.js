@@ -10,7 +10,7 @@ router.get('/usuarios', (req, res) => {
     conexion.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
-            
+
             res.json(rows)
         }
     })
@@ -86,153 +86,150 @@ router.put('/usuario/:id', (req, res) => {
     })
 })
 
-router.get('/comunas',(req,res)=>{
-    
+router.get('/comunas', (req, res) => {
+
     let sql = 'select * from comuna'
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
             res.json(rows)
             console.log("res: ", res);
         }
     })
 })
 
-router.get('/regiones',(req,res)=>{
-    
+router.get('/regiones', (req, res) => {
+
     let sql = 'select * from region'
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
             res.json(rows)
             console.log("res: ", res);
         }
     })
 })
 
-router.get('/usuariosadmins',(req,res)=>{
-    
+router.get('/usuariosadmins', (req, res) => {
+
     let sql = 'select * from usuario where id_rol=2'
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
             res.json(rows)
             console.log("res: ", res);
         }
     })
 })
 
-router.get('/usuariosadmins',(req,res)=>{
-    
+router.get('/usuariosadmins', (req, res) => {
+
     let sql = 'select * from usuario where id_rol=2'
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
             res.json(rows)
             console.log("res: ", res);
         }
     })
 })
 
-router.get('/metricas-fecha-creacion',(req,res)=>{
-    const { creacionMes,creacionAnio,hastaMes,hastaAnio } = req.body;
-    console.log(typeof creacionMes,creacionAnio,typeof hastaMes,hastaAnio);
+router.get('/metricas-fecha-creacion', (req, res) => {
+    const { creacionMes, creacionAnio, hastaMes, hastaAnio } = req.body;
+    console.log(typeof creacionMes, creacionAnio, typeof hastaMes, hastaAnio);
     let sql = `SELECT * FROM usuario 
     WHERE fec_creacion BETWEEN '${creacionAnio}-${creacionMes}-1 00:00:00' AND '${hastaAnio}-${hastaMes}-1 23:59:59'`
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
             res.json(rows);
-            
+
         }
     })
 })
 
 
-router.get('/publicaciones_usuario',(req,res)=>{
+router.get('/publicaciones_usuario', (req, res) => {
     const { idUsuario } = req.body;
     var todayDate = new Date();
     todayDate.setDate(todayDate.getDate());
     let todayString = todayDate.toISOString();
-    let fechaHoyBDD =todayString.slice(0, 10);
+    let fechaHoyBDD = todayString.slice(0, 10);
     console.log(fechaHoyBDD);
     let sql = `SELECT COUNT(id_publicacion) FROM publicacion inner join usuario on usuario.id_usuario='${idUsuario}' WHERE usuario.id_usuario=publicacion.id_usuario AND DATE(fecha_creacion) = DATE(NOW())`
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
             res.json(rows);
-            
+
         }
     })
 })
 
 
-router.get('/metricas-transacciones-fecha',(req,res)=>{
-    const { creacionMes,creacionAnio,creacionDia,hastaMes,hastaAnio,hastaDia } = req.body;
-     //preguntar a raul si me puede mandar la fecha entera.... (6 variables...)
+router.get('/metricas-transacciones-fecha', (req, res) => {
+    const { creacionMes, creacionAnio, creacionDia, hastaMes, hastaAnio, hastaDia } = req.body;
+    //preguntar a raul si me puede mandar la fecha entera.... (6 variables...)
     let sql = `SELECT *
     FROM registro_transaccion
     WHERE f_desde >= CAST('${creacionAnio}-${creacionMes}-${creacionDia}' AS DATE)
     AND f_hasta <= CAST('${hastaAnio}-${hastaMes}-${hastaDia}' AS DATE);`
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
             res.json(rows);
             console.log('paso query transacciones fecha');
         }
     })
 })
 //usuarios con membresia
-router.get('/metricas-usuarios-membresia',(req,res)=>{
-    
-    
-   let sql = `SELECT COUNT (usuario.id_usuario) FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
-   conexion.query(sql,(err,rows,fields)=>{
-       if(err) throw err;
-       else{
-        
-           res.Object.values(JSON.parse(JSON.stringify(rows)));
-           
-       }
-   })
+router.get('/metricas-usuarios-membresia', (req, res) => {
+
+
+    let sql = `SELECT COUNT (usuario.id_usuario) FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
+            res.Object.values(JSON.parse(JSON.stringify(rows)));
+        }
+    })
 })
 //usuarios sin membresia
- router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
- 
-   let sql = `SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL`
-   conexion.query(sql,(err,rows,fields)=>{
-       if(err) throw err;
-       else{
-    
-        
+router.get('/metricas-usuarios-sin-membresia', (req, res) => {
+
+    let sql = `SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL`
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
+
+
             res.Object.values(JSON.parse(JSON.stringify(rows)));
-       }
-   }) 
+        }
+    })
 })
 //monto total transacciones
-router.get('/monto-total-transacciones',(req,res)=>{
-   
-     
+router.get('/monto-total-transacciones', (req, res) => {
+
+
     let sql = `SELECT SUM(monto) AS Total FROM registro_transaccion`
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
             res.Object.values(JSON.parse(JSON.stringify(rows)));
-            
+
         }
     })
 })
 
 //numero de transacciones 
-router.get('/total-transacciones',(req,res)=>{
-   
-     
+router.get('/total-transacciones', (req, res) => {
+
+
     let sql = `SELECT COUNT(registro_transaccion.id_transaccion) FROM registro_transaccion `
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
+    conexion.query(sql, (err, rows, fields) => {
+        if (err) throw err;
+        else {
             res.Object.values(JSON.parse(JSON.stringify(rows)));
-            
         }
     })
 })
