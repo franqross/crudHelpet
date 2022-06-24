@@ -158,7 +158,7 @@ router.get('/metricas-usuarios-subs',(req,res)=>{
         else{
             Object.keys(rows).forEach(function(key) {
                 var row = rows[key];
-                console.log(row.name)
+                console.log(row.usuario.id_usuario)
               });
             res.json(rows);
             
