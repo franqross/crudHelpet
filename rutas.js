@@ -192,7 +192,7 @@ router.get('/metricas-usuarios-membresia',(req,res)=>{
        if(err) throw err;
        else{
         
-           res.json(rows);
+           res.Object.values(JSON.parse(JSON.stringify(rows)));
            
        }
    })
