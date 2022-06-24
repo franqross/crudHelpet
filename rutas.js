@@ -205,7 +205,7 @@ router.get('/metricas-usuarios-sin-membresia', (req, res) => {
         }
     })
 })
-//monto total transacciones
+//monto total transacciosssnes
 router.get('/monto-total-transacciones', (req, res) => {
 
 
