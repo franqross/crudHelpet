@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const conexion = require('./config/server');
+const conexion = require('../config/server');
 const fs = require('fs');
-//get usuarios
 
+
+//get usuarios
 //get all
 router.get('/usuarios', (req, res) => {
 
