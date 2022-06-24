@@ -165,7 +165,7 @@ router.post('/publicaciones_usuario', (req, res) => {
 })
 
 
-router.get('/metricas-transacciones-fecha', (req, res) => {
+router.post('/metricas-transacciones-fecha', (req, res) => {
     const { creacionMes, creacionAnio, creacionDia, hastaMes, hastaAnio, hastaDia } = req.body;
     //preguntar a raul si me puede mandar la fecha entera.... (6 variables...)
     let sql = `SELECT *
