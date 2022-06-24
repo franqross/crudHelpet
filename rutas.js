@@ -188,7 +188,7 @@ router.get('/metricas-usuarios-membresia', (req, res) => {
     db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
-            res.Object.values(JSON.parse(JSON.stringify(rows)));
+            res.json(rows);
         }
     })
 })
@@ -201,7 +201,7 @@ router.get('/metricas-usuarios-sin-membresia', (req, res) => {
         else {
 
 
-            res.Object.values(JSON.parse(JSON.stringify(rows)));
+            res.json(rows);
         }
     })
 })
@@ -213,7 +213,7 @@ router.get('/monto-total-transacciones', (req, res) => {
     db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
-            res.Object.values(JSON.parse(JSON.stringify(rows)));
+            res.json(rows);
 
         }
     })
@@ -227,7 +227,7 @@ router.get('/total-transacciones', (req, res) => {
     db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
-            res.Object.values(JSON.parse(JSON.stringify(rows)));
+            res.json(rows);
         }
     })
 })
