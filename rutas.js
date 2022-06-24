@@ -205,7 +205,7 @@ router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
    conexion.query(sql,(err,rows,fields)=>{
        if(err) throw err;
        else{
-        
+            console.log(rows);
            res.json(rows);
            
        }
