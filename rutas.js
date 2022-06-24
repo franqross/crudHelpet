@@ -156,7 +156,7 @@ router.get('/metricas-usuarios-subs',(req,res)=>{
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
-            console.log(rows);
+            console.log(rows.COUNT);
             res.json(rows);
             
         }
