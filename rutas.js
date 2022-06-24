@@ -206,7 +206,7 @@ router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
        if(err) throw err;
        else{
         
-             console.log(rows[0].COUNT(usuario.id_usuario));
+            //console.log(rows[0].COUNT(usuario.id_usuario));
             console.log(rows);
            res.json(rows);
            
