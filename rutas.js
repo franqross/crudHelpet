@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const conexion = require('./config/server');
-const PDFDocument = require('pdfkit');
 const fs = require('fs');
 //get usuarios
 
