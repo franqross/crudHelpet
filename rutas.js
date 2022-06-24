@@ -211,6 +211,20 @@ router.get('/metricas-transacciones-fecha',(req,res)=>{
     })
 })
 
+router.get('/total-transacciones',(req,res)=>{
+   
+     //preguntar a raul si me puede mandar la fecha entera.... (6 variables...)
+    let sql = `SELECT SUM(monto) AS Total FROM registro_transaccion`
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows);
+            
+        }
+    })
+})
+
+
 
 
 
