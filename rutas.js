@@ -168,6 +168,7 @@ router.get('/publicaciones_usuario',(req,res)=>{
     todayDate.setDate(todayDate.getDate() + 1);
     let todayString = todayDate.toISOString();
     let fechaHoyBDD =todayString.slice(0, 10);
+    console.log(fechaHoyBDD);
     let sql = `SELECT COUNT(id_publicacion) FROM publicacion inner join usuario on usuario.id_usuario='${idUsuario}' WHERE usuario.id_usuario=publicacion.id_usuario AND DATE(fecha_creacion) = DATE('${fechaHoyBDD}')`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
