@@ -157,7 +157,7 @@ router.get('/metricas-usuarios-subs',(req,res)=>{
         if(err) throw err;
         else{
             for (var i in rows) {
-                console.log('Total: ', rows[i].usuario);
+                console.log('Total: ', rows[i].usuario.id_usuario);
             }
            /*  console.log(JSON.stringify(rows));
             console.log((JSON.parse(rows))[0]);
