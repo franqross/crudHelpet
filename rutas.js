@@ -3,7 +3,7 @@ const db = require('./config/server');
 //get usuarios
 //get all
 router.get('/usuarios', (req, res) => {
-
+    console.log('im here');
     let sql = 'select * from usuario'
     db.query(sql, (err, rows, fields) => {
         if (err) throw err;
