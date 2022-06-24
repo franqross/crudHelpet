@@ -3,7 +3,7 @@ const conexion = require('./config/server');
 const fs = require('fs');
 //get usuarios
 
-//get all
+/* //get all
 router.get('/usuarios', (req, res) => {
 
     let sql = 'select * from usuario'
@@ -232,5 +232,5 @@ router.get('/total-transacciones', (req, res) => {
             res.Object.values(JSON.parse(JSON.stringify(rows)));
         }
     })
-})
+}) */
 module.exports = router;
