@@ -1,4 +1,3 @@
-require('dotenv').config({ override: true })
 var cors = require('cors');
 const express = require('express');
 
