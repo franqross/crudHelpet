@@ -5,11 +5,11 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const db = mysql.createConnection({
-    host: "database-2.cqixht8znhwm.us-east-1.rds.amazonaws.com",
-    port: 3000,
-    user: "admin",
-    password: "helpet-Adm127",
-    database: "helpetdb",
+    host: process.env.HOST,
+    port: process.env.DB_PORT,
+    user: process.env.USER_DB,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
     insecureAuth: true,
     ssl: {
         rejectUnauthorized: false
