@@ -154,7 +154,7 @@ router.post('/publicaciones_usuario', (req, res) => {
     let todayString = todayDate.toISOString();
     let fechaHoyBDD = todayString.slice(0, 10);
     console.log(fechaHoyBDD);
-    let sql = `SELECT id_publicacion, COUNT(*) FROM publicacion inner join usuario on usuario.id_usuario='${idUsuario}' WHERE usuario.id_usuario=publicacion.id_usuario AND DATE(fecha_creacion) = DATE(NOW())`
+    let sql = `SELECT COUNT FROM publicacion inner join usuario on usuario.id_usuario='${idUsuario}' WHERE usuario.id_usuario=publicacion.id_usuario AND DATE(fecha_creacion) = DATE(NOW())`
     db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
