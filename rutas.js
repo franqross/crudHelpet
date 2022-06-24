@@ -234,7 +234,7 @@ router.get('/total-transacciones',(req,res)=>{
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
-            res.json(rows);
+            res.resolve(rows);
             
         }
     })
