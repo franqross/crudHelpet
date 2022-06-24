@@ -2,33 +2,6 @@ require('dotenv').config();
 const mysql = require("mysql2");
 const fs = require("fs");
 
-var cors = require('cors')
-const express = require('express');
-
-const port = (+process.env.PORT || 3000);
-
-
-const app = express();
-
-//datos a agregar
-app.use(cors())
-app.use(express.json());
-//config
-
-app.set('port',port)
-
-app.use('/api',require('./rutas'))
-
-
-app.listen(app.get('port'),(error)=>{
-    if(error){
-        console.log('algo malo paso'+error);
-    }
-    else{
-        console.log('Conectado en: '+port)
-    }
-
-})
 const db = mysql.createConnection({
     host: process.env.HOST,
     port: +process.env.DB_PORT,
