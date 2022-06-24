@@ -178,8 +178,8 @@ router.get('/metricas-transacciones-fecha',(req,res)=>{
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
-            res.json(rows);
-            console.log('paso query transacciones fecha');
+            res.resolve(rows);
+            
         }
     })
 })
@@ -192,7 +192,7 @@ router.get('/metricas-usuarios-membresia',(req,res)=>{
        if(err) throw err;
        else{
         
-           res.json(rows);
+        res.resolve(rows);
            
        }
    })
@@ -208,7 +208,7 @@ router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
         
         console.log();
             //console.log(rows[0].COUNT(usuario.id_usuario));
-           res.json(rows);
+            res.resolve(rows);
        }
    })
 })
@@ -220,7 +220,7 @@ router.get('/monto-total-transacciones',(req,res)=>{
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
-            res.json(rows);
+            res.resolve(rows);
             
         }
     })
