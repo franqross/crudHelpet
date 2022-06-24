@@ -9,7 +9,7 @@ const port = (process.env.PORT || 3000);
 
 const app = express();
 
-//datos a agregar
+//datos a agregarr
 app.use(cors())
 app.use(express.json());
 //config
