@@ -205,8 +205,8 @@ router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
    conexion.query(sql,(err,rows,fields)=>{
        if(err) throw err;
        else{
-        var resultArray = Object.values(JSON.parse(JSON.stringify(rows)))
-        console.log(json(rows)['COUNT(usuario.id_usuario)']);
+        
+        console.log();
             //console.log(rows[0].COUNT(usuario.id_usuario));
            res.json(rows);
        }
