@@ -200,18 +200,13 @@ router.get('/metricas-usuarios-membresia',(req,res)=>{
 //usuarios sin membresia
 router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
    
-    async function getInfo(){
-        var sql = "SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL"
-        const results = await conexion.promise().query(sql)
-        return results[0]
-      }
-      console.log(getInfo);
+  
       
      /*  module.exports = [
         getInfo
       ] */
 
-  /*  let sql = `SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL`
+   let sql = `SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL`
    conexion.query(sql,(err,rows,fields)=>{
        if(err) throw err;
        else{
@@ -220,7 +215,7 @@ router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
             //console.log(rows[0].COUNT(usuario.id_usuario));
             res.Object.values(JSON.parse(JSON.stringify(rows)));
        }
-   }) */
+   }) 
 })
 //monto total transacciones
 router.get('/monto-total-transacciones',(req,res)=>{
