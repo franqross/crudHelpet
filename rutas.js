@@ -150,12 +150,16 @@ router.get('/metricas-fecha-creacion',(req,res)=>{
 })
 
 router.get('/metricas-usuarios-subs',(req,res)=>{
-    const { creacionMes,creacionAnio,hastaMes,hastaAnio } = req.body;
-
-    let sql = `SELECT usuario.*,subscripcion.id_subscripcion FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
+    const { idUsuario } = req.body;
+     //usuarios con membresia
+    let sql = `SELECT COUNT (usuario.id_usuario) FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
+            Object.keys(rows).forEach(function(key) {
+                var row = rows[key];
+                console.log(row.name)
+              });
             res.json(rows);
             
         }
@@ -195,6 +199,7 @@ router.get('/metricas-transacciones-fecha',(req,res)=>{
         }
     })
 })
+
 
 
 
