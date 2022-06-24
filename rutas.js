@@ -158,7 +158,8 @@ router.get('/metricas-usuarios-subs',(req,res)=>{
         else{
             const result = Object.values(JSON.parse(JSON.stringify(rows)));
             result.forEach((v) => console.log(v));
-            res.result;
+            console.log(result[0]);
+            res.json(result);
             
         }
     })
