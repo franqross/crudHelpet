@@ -156,12 +156,15 @@ router.get('/metricas-usuarios-subs',(req,res)=>{
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
-            console.log(JSON.stringify(rows));
+            for (var i in rows) {
+                console.log('Total: ', rows[i].usuario);
+            }
+           /*  console.log(JSON.stringify(rows));
             console.log((JSON.parse(rows))[0]);
             const result = Object.values(JSON.parse(JSON.stringify(rows)));
-           /*  result.forEach((v) => console.log(v));
-            console.log(result[0]); */
-            res.json(result);
+            result.forEach((v) => console.log(v));
+            console.log(result[0]);  */
+            res.json(rows);
             
         }
     })
