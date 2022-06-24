@@ -148,34 +148,7 @@ router.get('/metricas-fecha-creacion',(req,res)=>{
         }
     })
 })
-//usuarios con membresia
-router.get('/metricas-usuarios-membresia',(req,res)=>{
-    const { idUsuario } = req.body;
-     //usuarios con membresia
-    let sql = `SELECT COUNT (usuario.id_usuario) FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
-         
-            res.json(rows);
-            
-        }
-    })
-})
-//usuarios sin membresia
-router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
-    const { idUsuario } = req.body;
-     //usuarios con membresia
-    let sql = `SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL`
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
-         
-            res.json(rows);
-            
-        }
-    })
-})
+
 
 router.get('/publicaciones_usuario',(req,res)=>{
     const { idUsuario } = req.body;
@@ -210,10 +183,38 @@ router.get('/metricas-transacciones-fecha',(req,res)=>{
         }
     })
 })
-
-router.get('/total-transacciones',(req,res)=>{
+//usuarios con membresia
+router.get('/metricas-usuarios-membresia',(req,res)=>{
+    
+    
+   let sql = `SELECT COUNT (usuario.id_usuario) FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
+   conexion.query(sql,(err,rows,fields)=>{
+       if(err) throw err;
+       else{
+        
+           res.json(rows);
+           
+       }
+   })
+})
+//usuarios sin membresia
+router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
    
-     //preguntar a raul si me puede mandar la fecha entera.... (6 variables...)
+   
+   let sql = `SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL`
+   conexion.query(sql,(err,rows,fields)=>{
+       if(err) throw err;
+       else{
+        
+           res.json(rows);
+           
+       }
+   })
+})
+//monto total transacciones
+router.get('/monto-total-transacciones',(req,res)=>{
+   
+     
     let sql = `SELECT SUM(monto) AS Total FROM registro_transaccion`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
@@ -224,6 +225,19 @@ router.get('/total-transacciones',(req,res)=>{
     })
 })
 
+//numero de transacciones 
+router.get('/total-transacciones',(req,res)=>{
+   
+     
+    let sql = `SELECT COUNT(registro_transaccion.id_transaccion) FROM registro_transaccion `
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows);
+            
+        }
+    })
+})
 
 
 
