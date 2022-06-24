@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const fs = require("fs");
 require('dotenv').config();
 
@@ -9,10 +9,13 @@ const db = mysql.createConnection({
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
     ssl:{
-        // cert:'../cert/us-east-1-bundle.pem',
-        // ca: fs.readFileSync(__dirname + '../cert/us-east-1-bundle.pem')
         rejectUnauthorized: false
     }
+    // ssl: "Amazon RDS"
+    // ssl: {
+    //     ca: fs.readFileSync(__dirname + '/cert/global-bundle-2.pem')
+    // }
+
 
 });
 db.connect(err => {
@@ -25,7 +28,7 @@ db.connect(err => {
         //bla bla
     }) */
     ;
-    
+
 });
 
 module.exports = db;
