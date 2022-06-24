@@ -165,7 +165,7 @@ router.get('/metricas-usuarios-subs',(req,res)=>{
 router.get('/publicaciones_usuario',(req,res)=>{
     const { idUsuario } = req.body;
     var todayDate = new Date();
-    todayDate.setDate(todayDate.getDate() + 1);
+    todayDate.setDate(todayDate.getDate() - 1);
     let todayString = todayDate.toISOString();
     let fechaHoyBDD =todayString.slice(0, 10);
     console.log(fechaHoyBDD);
