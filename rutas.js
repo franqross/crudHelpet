@@ -202,7 +202,7 @@ router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
    
     async function getInfo(){
         var sql = "SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL"
-        const results = await conn.promise().query(sql)
+        const results = await conexion.promise().query(sql)
         return results[0]
       }
       console.log(getInfo);
