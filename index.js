@@ -1,8 +1,7 @@
 require('dotenv').config();
-require('./config/server');
 var cors = require('cors')
 const express = require('express');
-
+const router = require('./rutas')
 const port = (+process.env.PORT || 3000);
 
 
@@ -15,7 +14,7 @@ app.use(express.json());
 
 app.set('port',port)
 
-app.use('/api',require('./rutas'))
+app.use('/api', router)
 
 
 app.listen(app.get('port'),(error)=>{

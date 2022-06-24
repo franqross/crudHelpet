@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const conexion = require('../config/server');
-const fs = require('fs');
+const db = require('./config/server');
 
 
 //get usuarios
@@ -8,7 +7,7 @@ const fs = require('fs');
 router.get('/usuarios', (req, res) => {
 
     let sql = 'select * from usuario'
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
 
@@ -22,7 +21,7 @@ router.get('/usuarios', (req, res) => {
 router.get('/usuario/:id', (req, res) => {
     const { id } = req.params
     let sql = 'select * from usuario where id_usuario= ?'
-    conexion.query(sql, [id], (err, rows, fields) => {
+    db.query(sql, [id], (err, rows, fields) => {
         if (err) throw err;
         else {
             res.json(rows)
@@ -35,18 +34,18 @@ router.get('/usuario/:id', (req, res) => {
 router.delete('/usuario/:id', (req, res) => {
     const { id } = req.params
     let sqlfk = `SET FOREIGN_KEY_CHECKS=0;`
-    conexion.query(sqlfk, (err, rows, fields) => {
+    db.query(sqlfk, (err, rows, fields) => {
         if (err) throw err;
         else {
 
         }
     })
     let sql = `delete from usuario where id_usuario='${id}'`
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             let sqlfk = `SET FOREIGN_KEY_CHECKS=1;`
-            conexion.query(sqlfk, (err, rows, fields) => {
+            db.query(sqlfk, (err, rows, fields) => {
                 if (err) throw err;
                 else {
                     res.json({ status: 'usuario eliminado' })
@@ -65,18 +64,18 @@ router.put('/usuario/:id', (req, res) => {
     const { id } = req.params
     const { nombre, email } = req.body
     let sqlfk = `SET FOREIGN_KEY_CHECKS=0;`
-    conexion.query(sqlfk, (err, rows, fields) => {
+    db.query(sqlfk, (err, rows, fields) => {
         if (err) throw err;
         else {
 
         }
     })
     let sql = `UPDATE usuario SET nombre ='${nombre}',email='${email}' WHERE id_usuario ='${id}'`
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             let sqlfk = `SET FOREIGN_KEY_CHECKS=1;`
-            conexion.query(sqlfk, (err, rows, fields) => {
+            db.query(sqlfk, (err, rows, fields) => {
                 if (err) throw err;
                 else {
                     res.json({ status: 'usuario actualizado' })
@@ -90,7 +89,7 @@ router.put('/usuario/:id', (req, res) => {
 router.get('/comunas', (req, res) => {
 
     let sql = 'select * from comuna'
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.json(rows)
@@ -102,7 +101,7 @@ router.get('/comunas', (req, res) => {
 router.get('/regiones', (req, res) => {
 
     let sql = 'select * from region'
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.json(rows)
@@ -114,7 +113,7 @@ router.get('/regiones', (req, res) => {
 router.get('/usuariosadmins', (req, res) => {
 
     let sql = 'select * from usuario where id_rol=2'
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.json(rows)
@@ -126,7 +125,7 @@ router.get('/usuariosadmins', (req, res) => {
 router.get('/usuariosadmins', (req, res) => {
 
     let sql = 'select * from usuario where id_rol=2'
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.json(rows)
@@ -140,7 +139,7 @@ router.get('/metricas-fecha-creacion', (req, res) => {
     console.log(typeof creacionMes, creacionAnio, typeof hastaMes, hastaAnio);
     let sql = `SELECT * FROM usuario 
     WHERE fec_creacion BETWEEN '${creacionAnio}-${creacionMes}-1 00:00:00' AND '${hastaAnio}-${hastaMes}-1 23:59:59'`
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.json(rows);
@@ -158,7 +157,7 @@ router.get('/publicaciones_usuario', (req, res) => {
     let fechaHoyBDD = todayString.slice(0, 10);
     console.log(fechaHoyBDD);
     let sql = `SELECT COUNT(id_publicacion) FROM publicacion inner join usuario on usuario.id_usuario='${idUsuario}' WHERE usuario.id_usuario=publicacion.id_usuario AND DATE(fecha_creacion) = DATE(NOW())`
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.json(rows);
@@ -175,7 +174,7 @@ router.get('/metricas-transacciones-fecha', (req, res) => {
     FROM registro_transaccion
     WHERE f_desde >= CAST('${creacionAnio}-${creacionMes}-${creacionDia}' AS DATE)
     AND f_hasta <= CAST('${hastaAnio}-${hastaMes}-${hastaDia}' AS DATE);`
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.json(rows);
@@ -188,7 +187,7 @@ router.get('/metricas-usuarios-membresia', (req, res) => {
 
 
     let sql = `SELECT COUNT (usuario.id_usuario) FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.Object.values(JSON.parse(JSON.stringify(rows)));
@@ -199,7 +198,7 @@ router.get('/metricas-usuarios-membresia', (req, res) => {
 router.get('/metricas-usuarios-sin-membresia', (req, res) => {
 
     let sql = `SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL`
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
 
@@ -213,7 +212,7 @@ router.get('/monto-total-transacciones', (req, res) => {
 
 
     let sql = `SELECT SUM(monto) AS Total FROM registro_transaccion`
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.Object.values(JSON.parse(JSON.stringify(rows)));
@@ -227,11 +226,11 @@ router.get('/total-transacciones', (req, res) => {
 
 
     let sql = `SELECT COUNT(registro_transaccion.id_transaccion) FROM registro_transaccion `
-    conexion.query(sql, (err, rows, fields) => {
+    db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
             res.Object.values(JSON.parse(JSON.stringify(rows)));
         }
     })
 })
-module.exports = router;
+module.exports = router
