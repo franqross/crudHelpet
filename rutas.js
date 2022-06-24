@@ -148,22 +148,29 @@ router.get('/metricas-fecha-creacion',(req,res)=>{
         }
     })
 })
-
-router.get('/metricas-usuarios-subs',(req,res)=>{
+//usuarios con membresia
+router.get('/metricas-usuarios-membresia',(req,res)=>{
     const { idUsuario } = req.body;
      //usuarios con membresia
     let sql = `SELECT COUNT (usuario.id_usuario) FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err;
         else{
-            for (var i in rows) {
-                console.log('Total: ', rows[i]);
-            }
-           /*  console.log(JSON.stringify(rows));
-            console.log((JSON.parse(rows))[0]);
-            const result = Object.values(JSON.parse(JSON.stringify(rows)));
-            result.forEach((v) => console.log(v));
-            console.log(result[0]);  */
+         
+            res.json(rows);
+            
+        }
+    })
+})
+//usuarios sin membresia
+router.get('/metricas-usuarios-sin-membresia',(req,res)=>{
+    const { idUsuario } = req.body;
+     //usuarios con membresia
+    let sql = `SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL`
+    conexion.query(sql,(err,rows,fields)=>{
+        if(err) throw err;
+        else{
+         
             res.json(rows);
             
         }
