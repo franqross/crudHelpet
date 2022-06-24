@@ -14,7 +14,7 @@ router.get('/usuarios', (req, res) => {
     })
 })
 
-//por id
+//por ids
 
 router.get('/usuario/:id', (req, res) => {
     const { id } = req.params
