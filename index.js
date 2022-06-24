@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ debug: true })
 var cors = require('cors');
 const express = require('express');
 const router = require('./rutas');

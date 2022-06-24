@@ -1,7 +1,5 @@
 const router = require('express').Router();
 const db = require('./config/server');
-require('dotenv').config();
-
 //get usuarios
 //get all
 router.get('/usuarios', (req, res) => {
