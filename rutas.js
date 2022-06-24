@@ -165,6 +165,7 @@ router.get('/metricas-usuarios-subs',(req,res)=>{
 router.get('/publicaciones_usuario',(req,res)=>{
     const { idUsuario } = req.body;
     var todayDate = new Date();
+    todayDate.setDate(todayDate.getDate() + 1);
     let todayString = todayDate.toISOString();
     let fechaHoyBDD =todayString.slice(0, 10);
     let sql = `SELECT COUNT(id_publicacion) FROM publicacion inner join usuario on usuario.id_usuario='${idUsuario}' WHERE usuario.id_usuario=publicacion.id_usuario AND DATE(fecha_creacion) = DATE('${fechaHoyBDD}')`
