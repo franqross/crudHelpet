@@ -236,9 +236,4 @@ router.get('/total-transacciones',(req,res)=>{
         }
     })
 })
-
-
-
-
-
 module.exports = router;
