@@ -1,12 +1,13 @@
 const mysql = require("mysql");
 const fs = require("fs");
+require('dotenv').config();
 
 const db = mysql.createConnection({
-    host: "database-2.cqixht8znhwm.us-east-1.rds.amazonaws.com",
+    host: process.env.HOST,
     port: "3306",
-    user: "admin",
-    password: "helpet-Adm127",
-    database: "helpetdb",
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
     ssl:{
         // cert:'../cert/us-east-1-bundle.pem',
         // ca: fs.readFileSync(__dirname + '../cert/us-east-1-bundle.pem')
