@@ -1,6 +1,9 @@
 require('dotenv').config();
 const mysql = require("mysql");
 const fs = require("fs");
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 
 const db = mysql.createConnection({
     host: process.env.HOST,
@@ -8,8 +11,8 @@ const db = mysql.createConnection({
     user: process.env.USER_DB,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
-    insecureAuth : true,
-    ssl:{
+    insecureAuth: true,
+    ssl: {
         rejectUnauthorized: false
     }
 });
