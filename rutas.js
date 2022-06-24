@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const db = require('./config/server');
 //get usuarios
-//get all
+//get allsasad
 router.get('/usuarios', (req, res) => {
     console.log('im here');
     let sql = 'select * from usuario'
