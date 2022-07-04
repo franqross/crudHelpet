@@ -221,7 +221,7 @@ router.get('/monto-total-transacciones', (req, res) => {
 router.get('/total-transacciones', (req, res) => {
 
 
-    let sql = `SELECT COUNT(registro_transaccion.id_transaccion) FROM registro_transaccion `
+    let sql = `SELECT COUNT(registro_transaccion.id_transaccion) AS Total FROM registro_transaccion `
     db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
