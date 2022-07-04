@@ -193,7 +193,7 @@ router.get('/metricas-usuarios-membresia', (req, res) => {
 //usuarios sin membresia
 router.get('/metricas-usuarios-sin-membresia', (req, res) => {
 
-    let sql = `SELECT COUNT(usuario.id_usuario) FROM usuario WHERE id_subscripcion IS NULL`
+    let sql = `SELECT * FROM usuario WHERE id_subscripcion IS NULL`
     db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
