@@ -182,9 +182,7 @@ router.post('/metricas-transacciones-fecha', (req, res) => {
 })
 //usuarios con membresia
 router.get('/metricas-usuarios-membresia', (req, res) => {
-
-
-    let sql = `SELECT COUNT (usuario.id_usuario) FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
+    let sql = `SELECT * FROM usuario inner join subscripcion on usuario.id_subscripcion =subscripcion.id_subscripcion`
     db.query(sql, (err, rows, fields) => {
         if (err) throw err;
         else {
